@@ -19,8 +19,7 @@ class Cpu extends Component {
     super()
     this.state={
       cpu:[]
-    }
-    
+    }    
   }
   componentDidMount(){
     axios.get('/api/getdatabase').then(res=>{

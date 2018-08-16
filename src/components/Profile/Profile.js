@@ -10,7 +10,7 @@ class Profile extends Component {
       this.props.getUser(res.data)
     })
   }
-  LogOur(){
+  LogOut(){
     axios.get('/api/logout').then(res=>{
       this.props.logOut(res.data)
     })

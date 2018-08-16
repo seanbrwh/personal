@@ -1,16 +1,27 @@
 import React, { Component } from 'react';
 import Header from './components/Header/Header'
 import routes from './routes'
+import {withRouter} from 'react-router-dom'
+import {connect} from 'react-redux'
 
 class App extends Component {
   render() {
     return (
       <div>
-        <Header/>
+        {
+          this.props.session === null
+        ?<Header/>
+        : null
+        }
         {routes}
       </div>
     );
   }
 }
-
-export default App;
+function mapState(state){
+  let {session} = state  
+  return{
+    session
+  }
+}
+export default withRouter(connect(mapState)(App));

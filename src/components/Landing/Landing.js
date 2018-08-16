@@ -5,8 +5,8 @@ import Particles from 'react-particles-js'
 
 export default class Landing extends Component {
   login(){
-    let {REACT_APP_DOMAIN,REACT_APP_CLIENT_ID,REACT_APP_ENOCDE_URI} = process.env
-    let url = encodeURIComponent(REACT_APP_ENOCDE_URI)
+    let {REACT_APP_DOMAIN,REACT_APP_CLIENT_ID} = process.env
+    let url = `${window.location.origin}/auth/callback`
     window.location = `https://${REACT_APP_DOMAIN}/authorize?client_id=${REACT_APP_CLIENT_ID}&scope=openid%20profile%20email&redirect_uri=${url}&response_type=code`
   }
   render(){
@@ -16,7 +16,7 @@ export default class Landing extends Component {
         params={{
           particles:{
             number:{
-              value: 80,
+              value: 40,
               density: {
                 enable:true,
                 value_area:800
@@ -126,11 +126,11 @@ export default class Landing extends Component {
           retina_detected:false
           
         }}
-        style={{width:'100%', height:'100vh', background:'rgb(214,10,10)' ,zIndex:'-1'}}
+        style={{background:'rgb(214,10,10)' ,zIndex:'-1', position:'absolute',display:'block',top:'0',left:'0'}}
       
       >
       </Particles>
-      <div style={{zIndex:'1',position:'absolute', left:'50vw', top:'50vh'}}>
+      <div style={{zIndex:'1', width:'100%', height:'100vh', display:'flex', justifyContent:'space-evenly',alignItems:'center'}}>
         <span style={{fontSize:'3rem'}} onClick={()=>this.login()}>Login</span>
       </div>
       </div>

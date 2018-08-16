@@ -1,7 +1,17 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import {withRouter} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {addCooler} from '../../../ducks/reducer'
 
-export default class CpuCooler extends Component {
+import {
+  Accordion,
+  AccordionItem,
+  AccordionItemTitle,
+  AccordionItemBody,
+} from 'react-accessible-accordion';
+
+class CpuCooler extends Component {
   constructor(){
     super()
     this.state={
@@ -19,8 +29,41 @@ export default class CpuCooler extends Component {
         {
           this.state.cpucooler.map(e=>{
             return(
-              <div key={e.id}>
-                <h4>{e.ccmodel}</h4>
+              <div className='cooler' key={e.id}>            
+                  <Accordion>
+                    <AccordionItem>
+                    <AccordionItemTitle>
+                      <div style={{
+                        display:'flex',
+                        justifyContent:'space-evenly',
+                        alignItems:'center',
+                        flexDirection:'column',    
+                      }}>
+                        <p>{e.ccmodel}</p>
+
+                      </div>
+                    </AccordionItemTitle>
+                    <AccordionItemBody>
+                      <div style={{
+                        display:'flex',
+                        justifyContent:'space-evenly',
+                        alignItems:'center',
+                        flexDirection:'column',                      
+                      }}>
+                        <p>
+                          {e.ccmanufacturer}
+                        </p>
+                        <p>
+                          {e.cccores}
+                        </p>
+                        <p>
+                          {e.ccsocket}
+                        </p>
+                      <button onClick={()=>this.props.addCooler(e.product_id)}>Add</button>
+                      </div>
+                    </AccordionItemBody>
+                    </AccordionItem>
+                  </Accordion>
               </div>
             )
           })
@@ -29,3 +72,10 @@ export default class CpuCooler extends Component {
     )
   }
 }
+function mapState(state){
+  let {cooler} = state
+  return{
+    cooler
+  }
+}
+export default withRouter(connect(mapState,{addCooler})(CpuCooler))

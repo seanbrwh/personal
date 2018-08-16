@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { unregister } from './registerServiceWorker';
 import {HashRouter} from 'react-router-dom'
 import {Provider} from 'react-redux'
 import store from './ducks/store'
+import './index.css'
 
 ReactDOM.render(
 <Provider store={store}>
@@ -13,4 +13,4 @@ ReactDOM.render(
   </HashRouter> 
 </Provider>
 , document.getElementById('root'));
-unregister();
+

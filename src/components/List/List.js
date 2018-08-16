@@ -27,9 +27,9 @@ class List extends Component {
   }
 }
 function mapState(state){
-  let {cpu} = state
+  let {compcase,cpu,cpucooler,memory,motherboard,powersupply,storage,videocard} = state
   return{
-    cpu
+    compcase,cpu,cpucooler,memory,motherboard,powersupply,storage,videocard
   }
 }
 export default withRouter(connect(mapState)(List))

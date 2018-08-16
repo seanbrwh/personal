@@ -1,7 +1,17 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import {withRouter} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {addVideoCard} from '../../../ducks/reducer'
 
-export default class VideoCard extends Component {
+import {
+  Accordion,
+  AccordionItem,
+  AccordionItemTitle,
+  AccordionItemBody,
+} from 'react-accessible-accordion';
+
+class VideoCard extends Component {
   constructor(){
     super()
     this.state={
@@ -20,8 +30,41 @@ export default class VideoCard extends Component {
         {
           this.state.videocard.map(e=>{
             return(
-              <div key={e.id}>
-                <h4>{e.vidmodel}</h4>
+              <div className='videocard' key={e.id}>            
+                  <Accordion>
+                    <AccordionItem>
+                    <AccordionItemTitle>
+                      <div style={{
+                        display:'flex',
+                        justifyContent:'space-evenly',
+                        alignItems:'center',
+                        flexDirection:'column',    
+                      }}>
+                        <p>{e.vidmodel}</p>
+
+                      </div>
+                    </AccordionItemTitle>
+                    <AccordionItemBody>
+                      <div style={{
+                        display:'flex',
+                        justifyContent:'space-evenly',
+                        alignItems:'center',
+                        flexDirection:'column',                      
+                      }}>
+                        <p>
+                          {e.vidmanufacturer}
+                        </p>
+                        <p>
+                          {e.cvidcores}
+                        </p>
+                        <p>
+                          {e.cvidsocket}
+                        </p>
+                      <button onClick={()=>this.props.addVideoCard(e.product_id)}>Add</button>
+                      </div>
+                    </AccordionItemBody>
+                    </AccordionItem>
+                  </Accordion>
               </div>
             )
           })
@@ -30,3 +73,10 @@ export default class VideoCard extends Component {
     )
   }
 }
+function mapState(state){
+  let {videoCard} = state
+  return{
+    videoCard
+  }
+}
+export default withRouter(connect(mapState,{addVideoCard})(VideoCard))

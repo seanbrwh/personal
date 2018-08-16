@@ -1,7 +1,18 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import {withRouter} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {addPsu} from '../../../ducks/reducer'
 
-export default class PowerSupply extends Component {
+import {
+  Accordion,
+  AccordionItem,
+  AccordionItemTitle,
+  AccordionItemBody,
+} from 'react-accessible-accordion';
+
+
+class PowerSupply extends Component {
   constructor(){
     super()
     this.state={
@@ -19,8 +30,41 @@ export default class PowerSupply extends Component {
         {
           this.state.powerSupply.map(e=>{
             return(
-              <div key={e.id}>
-                <h4>{e.psumodel}</h4>
+              <div className='powersupply' key={e.id}>            
+                  <Accordion>
+                    <AccordionItem>
+                    <AccordionItemTitle>
+                      <div style={{
+                        display:'flex',
+                        justifyContent:'space-evenly',
+                        alignItems:'center',
+                        flexDirection:'column',    
+                      }}>
+                        <p>{e.psumodel}</p>
+
+                      </div>
+                    </AccordionItemTitle>
+                    <AccordionItemBody>
+                      <div style={{
+                        display:'flex',
+                        justifyContent:'space-evenly',
+                        alignItems:'center',
+                        flexDirection:'column',                      
+                      }}>
+                        <p>
+                          {e.psumanufacturer}
+                        </p>
+                        <p>
+                          {e.casecores}
+                        </p>
+                        <p>
+                          {e.casesocket}
+                        </p>
+                      <button onClick={()=>this.props.addPsu(e.product_id)}>Add</button>
+                      </div>
+                    </AccordionItemBody>
+                    </AccordionItem>
+                  </Accordion>
               </div>
             )
           })
@@ -29,3 +73,10 @@ export default class PowerSupply extends Component {
     )
   }
 }
+function mapState(state){
+  let {psu} = state
+  return{
+    psu
+  }
+}
+export default withRouter(connect(mapState,{addPsu})(PowerSupply))
