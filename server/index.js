@@ -4,7 +4,7 @@ const session = require('express-session')
 const axios = require('axios')
 const massive = require('massive')
 const bodyParser = require('body-parser')
-const {SERVER_PORT,REACT_APP_DOMAIN,REACT_APP_CLIENT_ID,CLIENT_SECRET,SESSION_SECRET,DATABASE_URL} = process.env
+const {SERVER_PORT,REACT_APP_DOMAIN,REACT_APP_CLIENT_ID,CLIENT_SECRET,SESSION_SECRET,DATABASE_URL,REDIRECT} = process.env
 
 const app = express()
 app.use(bodyParser.urlencoded({extended:true}))
@@ -42,11 +42,11 @@ app.get('/auth/callback', async (req, res) => {
   let userExists = await db.find_user([sub]);
   if (userExists[0]) {
     req.session.user = userExists[0];
-    res.redirect('http://localhost:3000/#/profile');
+    res.redirect(REDIRECT);
   } else {
     db.create_user([sub, name, picture]).then(createdUser => {
       req.session.user = createdUser[0];
-      res.redirect('http://localhost:3000/#/profile');
+      res.redirect(REDIRECT);
     });
   }
 });
