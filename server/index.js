@@ -7,6 +7,7 @@ const bodyParser = require('body-parser')
 const {SERVER_PORT,REACT_APP_DOMAIN,REACT_APP_CLIENT_ID,CLIENT_SECRET,SESSION_SECRET,DATABASE_URL,REDIRECT} = process.env
 
 const app = express()
+app.use( express.static( `${__dirname}/../build` ) );
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(bodyParser.json())
 
