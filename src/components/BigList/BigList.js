@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import {Link} from 'react-router-dom'
+import {Link,withRouter} from 'react-router-dom'
+import {connect} from 'react-redux'
+import axios from 'axios'
+import {getUser} from '../../ducks/reducer'
 
 const Wrapper = styled.div`
   width:100%;
@@ -9,13 +12,19 @@ const Wrapper = styled.div`
   justify-content:space-around;
   align-items:center;
   flex-direction:column;
+  background:rgb(127,127,127);
 `
 const linkStyle = {
   textDecoration:'none',
   color:'#000000'
 }
 
-export default class BigList extends Component {
+class BigList extends Component {
+  componentWillMount(){
+    axios.get('/api/user').then(res=>{
+      this.props.getUser(res.data)
+    })
+  }
   render() {
     return (
       <Wrapper>
@@ -47,3 +56,10 @@ export default class BigList extends Component {
     )
   }
 }
+function mapState(state){
+  let {session} = state
+  return {
+    session
+  }
+}
+export default withRouter(connect(mapState,{getUser})(BigList))

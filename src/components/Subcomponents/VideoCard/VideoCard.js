@@ -15,13 +15,18 @@ class VideoCard extends Component {
   constructor(){
     super()
     this.state={
-      videocard:[]
+      videocard:[],
+      itemToggle:false
     }
   }
   componentDidMount(){
     axios.get('/api/getdatabase').then(res=>{
       this.setState({videocard:res.data[7]})
     })
+  }
+  saveItem(product){
+    this.props.addVideoCard(product)
+    this.setState({itemToggle:true})    
   }
   render() {
     console.log(this.state);
@@ -55,12 +60,29 @@ class VideoCard extends Component {
                           {e.vidmanufacturer}
                         </p>
                         <p>
-                          {e.cvidcores}
+                          {e.vidpartnum}
                         </p>
                         <p>
-                          {e.cvidsocket}
+                          {e.vidtdp}
                         </p>
-                      <button onClick={()=>this.props.addVideoCard(e.product_id)}>Add</button>
+                        <p>
+                          {e.vidmem_size}
+                        </p>
+                        <p>
+                          {e.vidcore_clock}
+                        </p>
+                        <p>
+                          {e.vidfan_length}
+                        </p>
+                        <p>
+                          {e.vidoutputs}
+                        </p>
+                      <span onClick={()=>this.saveItem(e.id)}><i className="fa fa-plus" aria-hidden="true"></i>
+                      {
+                        this.state.itemToggle === true
+                        ? <p>item Added</p>
+                        : null
+                      }</span>
                       </div>
                     </AccordionItemBody>
                     </AccordionItem>

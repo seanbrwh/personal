@@ -18,13 +18,18 @@ class Cpu extends Component {
   constructor(){
     super()
     this.state={
-      cpu:[]
+      cpu:[],
+      itemToggle:false
     }    
   }
   componentDidMount(){
     axios.get('/api/getdatabase').then(res=>{
       this.setState({cpu:res.data[1]})
     })
+  }
+  saveItem(product){
+    this.props.addCpu(product)
+    this.setState({itemToggle:true})    
   }
   render() {
     console.log(this.state.cpu)
@@ -63,7 +68,38 @@ class Cpu extends Component {
                         <p>
                           {e.cpusocket}
                         </p>
-                      <button onClick={()=>this.props.addCpu(e.product_id)}>Add</button>
+                        <p>
+                          {e.cpupartnum}
+                        </p>
+                        <p>
+                          {e.cpufrenquency}
+                        </p>
+                        <p>
+                          {e.cputurbo}
+                        </p>
+                        <p>
+                          {e.cputdp}
+                        </p>
+                        <p>
+                          {e.cpumultithread}
+                        </p>
+                        <p>
+                          {e.cpumaxmem}
+                        </p>
+                        <p>
+                          {e.cpuintgraphics}
+                        </p>
+                        <p>
+                          {e.cpuincludedcpu_cooler}
+                        </p>
+                      <span onClick={()=>this.saveItem(e.id)}> 
+                      <i className="fa fa-plus" aria-hidden="true"></i>
+                      {
+                        this.state.itemToggle === true
+                        ? <p>Item added</p>
+                        :null
+                      } 
+                      </span>
                       </div>
                     </AccordionItemBody>
                     </AccordionItem>

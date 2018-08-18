@@ -15,13 +15,18 @@ class CpuCooler extends Component {
   constructor(){
     super()
     this.state={
-      cpucooler:[]
+      cpucooler:[],
+      itemToggle:false
     }
   }
   componentDidMount(){
     axios.get('/api/getdatabase').then(res=>{
       this.setState({cpucooler:res.data[2]})
     })
+  }
+  saveItem(product){
+    this.props.addCooler(product)
+    this.setState({itemToggle:true})
   }
   render() {
     return (
@@ -50,17 +55,32 @@ class CpuCooler extends Component {
                         alignItems:'center',
                         flexDirection:'column',                      
                       }}>
+                       
                         <p>
                           {e.ccmanufacturer}
                         </p>
                         <p>
-                          {e.cccores}
+                          {e.ccpartnum}
                         </p>
                         <p>
-                          {e.ccsocket}
+                          {e.ccmodel}
                         </p>
-                      <button onClick={()=>this.props.addCooler(e.product_id)}>Add</button>
+                        <p>
+                          {e.ccsupp_sockets}
+                        </p>
+                        <p>
+                          {e.ccliquid}
+                        </p>
+                        <p>
+                          {e.ccc_height}
+                        </p>
+                      <span onClick={()=>this.saveItem(e.id)}><i className="fa fa-plus" aria-hidden="true"></i></span>
                       </div>
+                      {
+                        this.state.itemToggle === true
+                        ? <p>Item added</p>
+                        :null
+                      }
                     </AccordionItemBody>
                     </AccordionItem>
                   </Accordion>

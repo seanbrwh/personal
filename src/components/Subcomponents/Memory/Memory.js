@@ -15,13 +15,18 @@ class Memory extends Component {
   constructor(){
     super()
     this.state={
-      memory:[]
+      memory:[],
+      itemToggle:false
     }
   }
   componentDidMount(){
     axios.get('/api/getdatabase').then(res=>{
       this.setState({memory:res.data[3]})
     })
+  }
+  saveItem(product){
+    this.props.addMemory(product)
+    this.setState({itemToggle:true})    
   }
   render() {
     return (
@@ -50,17 +55,29 @@ class Memory extends Component {
                         alignItems:'center',
                         flexDirection:'column',                      
                       }}>
+                      
                         <p>
                           {e.memmanufacturer}
+                        </p>                        
+                        <p>
+                          {e.mempartnum}
                         </p>
                         <p>
-                          {e.memcores}
+                          {e.memspeed}
                         </p>
                         <p>
-                          {e.memsocket}
+                          {e.memsize}
                         </p>
-                      <button onClick={()=>this.props.addMemory(e.product_id)}>Add</button>
+                        <p>
+                          {e.memcas_latency}
+                        </p>
+                      <span onClick={()=>this.saveItem(e.id)}><i className="fa fa-plus" aria-hidden="true"></i></span>
                       </div>
+                      {
+                        this.state.itemToggle === true
+                        ? <p>item Added</p>
+                        :null
+                      }
                     </AccordionItemBody>
                     </AccordionItem>
                   </Accordion>

@@ -6,7 +6,7 @@ import Particles from 'react-particles-js'
 export default class Landing extends Component {
   login(){
     let {REACT_APP_DOMAIN,REACT_APP_CLIENT_ID} = process.env
-    let url = `${window.location.origin}/auth/callback`
+    let url = encodeURIComponent(`http://localhost:3099/auth/callback`)
     window.location = `https://${REACT_APP_DOMAIN}/authorize?client_id=${REACT_APP_CLIENT_ID}&scope=openid%20profile%20email&redirect_uri=${url}&response_type=code`
   }
   render(){
@@ -16,32 +16,27 @@ export default class Landing extends Component {
         params={{
           particles:{
             number:{
-              value: 40,
+              value: 35,
               density: {
                 enable:true,
                 value_area:800
               }
             },
             color:{
-              value: '#000000'
+              value: '#bada55'
             },
             shape:{
-              type:'circle',
+              type:'square',
               stroke:{
                 width:0,
-                color:'#000000'
+                color:'#bada55'
               },
               polygon:{
-                nb_sides: 5,
-              },
-              image:{
-                src: 'http://via.placeholder.com/350x150',
-                width: 100,
-                height:100              
+                nb_sides: 12,
               }
             },
             opacity:{
-              value:0.5,
+              value:0.1,
               random:false,
               anim:{
                 enable:false,
@@ -51,7 +46,7 @@ export default class Landing extends Component {
               }
             },
             size:{
-              value:3,
+              value:1,
               random:true,
               anim:{
                 enable:false,
@@ -63,7 +58,7 @@ export default class Landing extends Component {
             line_linked:{
               enable:true,
               distance:150,
-              color:'#ffffff',
+              color:'#bada55',
               opacity:0.4,
               width:1
             },
@@ -126,12 +121,14 @@ export default class Landing extends Component {
           retina_detected:false
           
         }}
-        style={{background:'rgb(214,10,10)' ,zIndex:'-1', position:'absolute',display:'block',top:'0',left:'0'}}
+        style={{background:'rgb(127,127,127)' ,zIndex:'-1', position:'absolute',display:'block',top:'0',left:'0'}}
       
       >
       </Particles>
-      <div style={{zIndex:'1', width:'100%', height:'100vh', display:'flex', justifyContent:'space-evenly',alignItems:'center'}}>
-        <span style={{fontSize:'3rem'}} onClick={()=>this.login()}>Login</span>
+      
+      <div style={{zIndex:'1', width:'100%', height:'100vh', display:'flex',justifyContent:'space-evenly' ,alignItems:'center',flexDirection:'column'}}>
+        <span style={{fontSize:'2rem',transform:'rotate(10deg)',letterSpacing:'9px',marginLeft:'90px',marginBottom:'10px',cursor:'pointer'}} onClick={()=>this.login()}>Personal Computer Chunks</span>
+        <span style={{fontSize:'3rem',transform:'rotate(-10deg)',cursor:'pointer'}} onClick={()=>this.login()}>Login</span>
       </div>
       </div>
     )

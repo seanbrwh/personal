@@ -4,16 +4,18 @@ import routes from './routes'
 import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 
+
 class App extends Component {
   render() {
     return (
       <div>
         {
-          this.props.session === null
+          this.props.session.id
         ?<Header/>
         : null
         }
         {routes}
+        
       </div>
     );
   }

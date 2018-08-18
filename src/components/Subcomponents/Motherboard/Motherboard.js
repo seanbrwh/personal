@@ -16,13 +16,18 @@ class Motherboard extends Component {
   constructor(){
     super()
     this.state={
-      motherboard:[]
+      motherboard:[],
+      itemToggle:false
     }
   }
   componentDidMount(){
     axios.get('/api/getdatabase').then(res=>{
       this.setState({motherboard:res.data[4]})
     })
+  }
+  saveItem(product){
+    this.props.addMb(product)
+    this.setState({itemToggle:true})    
   }
   render() {
     return (
@@ -51,17 +56,38 @@ class Motherboard extends Component {
                         alignItems:'center',
                         flexDirection:'column',                      
                       }}>
+                      
                         <p>
                           {e.mbmanufacturer}
                         </p>
                         <p>
-                          {e.mbcores}
+                          {e.mbpartnum}
                         </p>
                         <p>
-                          {e.mbsocket}
+                          {e.mbform_factor}
                         </p>
-                      <button onClick={()=>this.props.addMb(e.product_id)}>Add</button>
+                        <p>
+                          {e.mbcpu_socket}
+                        </p>
+                        <p>
+                          {e.mbmem_slot}
+                        </p>
+                        <p>
+                          {e.mbmem_type}
+                        </p>
+                        <p>
+                          {e.mbmax_mem}
+                        </p>
+                        <p>
+                          {e.mbsata}
+                        </p>                        
+                      <span onClick={()=>this.saveItem(e.id)}><i className="fa fa-plus" aria-hidden="true"></i></span>
                       </div>
+                      {
+                        this.state.itemToggle === true
+                        ? <p>item Added</p>
+                        : null
+                      }
                     </AccordionItemBody>
                     </AccordionItem>
                   </Accordion>

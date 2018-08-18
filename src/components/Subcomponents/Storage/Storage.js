@@ -15,13 +15,18 @@ class Storage extends Component {
   constructor(){
     super()
     this.state={
-      storage:[]
+      storage:[],
+      itemToggle:false
     }
   }
   componentDidMount(){
     axios.get('/api/getdatabase').then(res=>{
       this.setState({storage:res.data[6]})
     })
+  }
+  saveItem(product){
+    this.props.addStorage(product)
+    this.setState({itemToggle:true})    
   }
   render() {
     return (
@@ -49,17 +54,29 @@ class Storage extends Component {
                         justifyContent:'space-evenly',
                         alignItems:'center',
                         flexDirection:'column',                      
-                      }}>
+                      }}>                       
                         <p>
                           {e.stmanufacturer}
                         </p>
                         <p>
-                          {e.stcores}
+                          {e.stpartnum}
                         </p>
                         <p>
-                          {e.stsocket}
+                          {e.stcapicity}
                         </p>
-                      <button onClick={()=>this.props.addStorage(e.product_id)}>Add</button>
+                        <p>
+                          {e.stinterface}
+                        </p>
+                        <p>
+                          {e.stform_factor}
+                        </p>
+                        
+                      <span onClick={()=>this.saveItem(e.id)}><i className="fa fa-plus" aria-hidden="true"></i>
+                      {
+                        this.state.itemToggle === true
+                        ? <p>item Added</p>
+                        : null
+                      }</span>
                       </div>
                     </AccordionItemBody>
                     </AccordionItem>

@@ -16,13 +16,18 @@ class PowerSupply extends Component {
   constructor(){
     super()
     this.state={
-      powerSupply:[]
+      powerSupply:[],
+      itemToggle:false
     }
   }
   componentDidMount(){
     axios.get('/api/getdatabase').then(res=>{
       this.setState({powerSupply:res.data[5]})
     })
+  }
+  saveItem(product){
+    this.props.addPsu(product)
+    this.setState({itemToggle:true})    
   }
   render() {
     return (
@@ -55,13 +60,27 @@ class PowerSupply extends Component {
                           {e.psumanufacturer}
                         </p>
                         <p>
-                          {e.casecores}
+                          {e.psupartnum}
                         </p>
                         <p>
-                          {e.casesocket}
+                          {e.psuform_type}
                         </p>
-                      <button onClick={()=>this.props.addPsu(e.product_id)}>Add</button>
+                        <p>
+                          {e.psuwattage}
+                        </p>
+                        <p>
+                          {e.psumodular}
+                        </p>
+                        <p>
+                          {e.psupci_6_2}
+                        </p>
+                      <span onClick={()=>this.saveItem(e.id)}><i className="fa fa-plus" aria-hidden="true"></i></span>
                       </div>
+                      {
+                        this.state.itemToggle === true
+                        ? <p>item Added</p>
+                        : null
+                      }
                     </AccordionItemBody>
                     </AccordionItem>
                   </Accordion>

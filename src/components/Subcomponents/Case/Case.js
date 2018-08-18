@@ -11,11 +11,14 @@ import {
   AccordionItemBody,
 } from 'react-accessible-accordion';
 
+
+
 class Case extends Component {
   constructor(){
     super()
     this.state={
-      case:[]
+      case:[],
+      itemToggle:false
     }
   }
   componentDidMount(){
@@ -25,45 +28,85 @@ class Case extends Component {
   }
   saveItem(product){
     this.props.addCase(product)
-    window.location = `http://localhost:3000/#/biglist`
+    this.setState({itemToggle:true})    
   }
   render() {
+    console.log(this.state.itemToggle)
     return (
-      <div>
+      <div style={{width:'100%',overflow:'hidden'}}>
         {
           this.state.case.map(e=>{
             return(
               <div className='case' key={e.id}>            
-                  <Accordion>
+                  <Accordion style={{width:'100%',overflow:'hidden'}}>
                     <AccordionItem>
-                    <AccordionItemTitle>
+                    <AccordionItemTitle style={{background:'rgb(64,64,64)', color:'rgb(229,229,229)',fontWeight:'bold'}}>
                       <div style={{
                         display:'flex',
                         justifyContent:'space-evenly',
                         alignItems:'center',
-                        flexDirection:'column',    
+                        flexDirection:'column',
+                        textAlign:'center'    
                       }}>
                         <p>{e.casemodel}</p>
 
                       </div>
                     </AccordionItemTitle>
-                    <AccordionItemBody>
+                    <AccordionItemBody style={{background:'rgb(127,127,127)'}}>
                       <div style={{
                         display:'flex',
                         justifyContent:'space-evenly',
                         alignItems:'center',
                         flexDirection:'column',                      
                       }}>
-                        <p>
+                          Manufacturer
+                        <p style={{textAlign:'center',color:'rgb(229,229,229)'}}>
                           {e.casemanufacturer}
                         </p>
-                        <p>
-                          {e.casecores}
+                          <hr style={{width:'180px',height:'2px',border:'0',borderTop:'1px solid black',lineHeight:'1px',marginTop:'-5px'}}/>
+                        Part Number
+                        <p style={{textAlign:'center',color:'rgb(229,229,229)'}}>
+                          {e.casepartnum}
                         </p>
-                        <p>
-                          {e.casesocket}
+                          <hr style={{width:'180px',height:'2px',border:'0',borderTop:'1px solid black',lineHeight:'1px'}}/>
+                        Case Type
+                        <p style={{textAlign:'center',color:'rgb(229,229,229)'}}>
+                          {e.caseform_type}
                         </p>
-                      <button onClick={()=>this.saveItem(e.product_id)}>Add</button>
+                          <hr style={{width:'180px',height:'2px',border:'0',borderTop:'1px solid black',lineHeight:'1px'}}/>
+                        Included PSU
+                        <p style={{textAlign:'center',color:'rgb(229,229,229)'}}>
+                          {e.casepsu}
+                        </p>
+                          <hr style={{width:'180px',height:'2px',border:'0',borderTop:'1px solid black',lineHeight:'1px'}}/>
+                        2.5" drive bays
+                        <p style={{textAlign:'center',color:'rgb(229,229,229)'}}>
+                          {e.caseinttwofive}
+                        </p>
+                          <hr style={{width:'180px',height:'2px',border:'0',borderTop:'1px solid black',lineHeight:'1px'}}/>
+                        3.5" Drive Bays
+                        <p style={{textAlign:'center',color:'rgb(229,229,229)'}}>
+                        {e.caseintthreefive}
+                        </p>
+                          <hr style={{width:'180px',height:'2px',border:'0',borderTop:'1px solid black',lineHeight:'1px'}}/>
+                        Compatible Motherboards
+                        <p style={{textAlign:'center',color:'rgb(229,229,229)'}}>
+                          {e.casembcompatible}
+                        </p>
+                          <hr style={{width:'180px',height:'2px',border:'0',borderTop:'1px solid black',lineHeight:'1px'}}/>
+                        Maximum Video card Length
+                        <p style={{textAlign:'center',color:'rgb(229,229,229)'}}>
+                          {e.casemaxvidcardlength}
+                        </p>
+                          <hr style={{width:'180px',height:'2px',border:'0',borderTop:'1px solid black',lineHeight:'1px'}}/>
+                      <span onClick={()=>this.saveItem(e.id)}>
+                      <i className="fa fa-plus" aria-hidden="true"></i>
+                      </span>
+                      {
+                        this.state.itemToggle === true
+                        ? <p>item Added</p>
+                        : null
+                      }
                       </div>
                     </AccordionItemBody>
                     </AccordionItem>

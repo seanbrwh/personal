@@ -2,7 +2,7 @@ let initialState = {
   session:{},
   compcase:[],
   cpu:[],
-  cooler:[],
+  cpucooler:[],
   memory:[],
   motherboard:[],
   psu:[],
@@ -87,11 +87,11 @@ export default function reducer(state=initialState, action){
     case LOGOUT_USER:
     return {...state,session:action.payload}
     case ADD_CASE:
-    return {...state, ...state.session, case:[action.payload]}
+    return {...state, ...state.session, compcase:[action.payload]}
     case ADD_CPU:
     return {...state, ...state.session, cpu:[action.payload]}
     case ADD_COOLER:
-    return {...state, ...state.session, cooler:[action.payload]}
+    return {...state, ...state.session, cpucooler:[action.payload]}
     case ADD_MEMORY:
     return {...state, ...state.session, memory:[action.payload]}
     case ADD_MB:
