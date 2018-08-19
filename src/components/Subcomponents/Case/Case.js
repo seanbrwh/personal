@@ -99,7 +99,7 @@ class Case extends Component {
                           {e.casemaxvidcardlength}
                         </p>
                           <hr style={{width:'180px',height:'2px',border:'0',borderTop:'1px solid black',lineHeight:'1px'}}/>
-                      <span onClick={()=>this.saveItem(e.id)}>
+                      <span onClick={()=>this.saveItem(e.case_id)}>
                       <i className="fa fa-plus" aria-hidden="true"></i>
                       </span>
                       {

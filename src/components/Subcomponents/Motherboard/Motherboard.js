@@ -31,63 +31,79 @@ class Motherboard extends Component {
   }
   render() {
     return (
-      <div>
+      <div style={{width:'100%',height:'100vh',background:'rgb(127,127,127)'}}>
         {
           this.state.motherboard.map(e=>{
             return(
               <div className='motherboard' key={e.id}>            
-                  <Accordion>
+                  <Accordion style={{width:'100%',overflow:'hidden'}}>
                     <AccordionItem>
-                    <AccordionItemTitle>
+                    <AccordionItemTitle style={{background:'rgb(64,64,64)', color:'rgb(229,229,229)',fontWeight:'bold'}}>
                       <div style={{
                         display:'flex',
                         justifyContent:'space-evenly',
                         alignItems:'center',
                         flexDirection:'column',    
+                        textAlign:'center'
                       }}>
                         <p>{e.mbmodel}</p>
 
                       </div>
                     </AccordionItemTitle>
-                    <AccordionItemBody>
+                    <AccordionItemBody style={{background:'rgb(127,127,127)'}}>
                       <div style={{
                         display:'flex',
                         justifyContent:'space-evenly',
                         alignItems:'center',
                         flexDirection:'column',                      
                       }}>
-                      
-                        <p>
+                        Manufacturer
+                        <p  style={{textAlign:'center',color:'rgb(229,229,229)'}}>
                           {e.mbmanufacturer}
                         </p>
-                        <p>
+                        <hr style={{width:'180px',height:'2px',border:'0',borderTop:'1px solid black',lineHeight:'1px',marginTop:'-5px'}}/>
+                        Part Number
+                        <p  style={{textAlign:'center',color:'rgb(229,229,229)'}}>
                           {e.mbpartnum}
                         </p>
-                        <p>
+                        <hr style={{width:'180px',height:'2px',border:'0',borderTop:'1px solid black',lineHeight:'1px',marginTop:'-5px'}}/>
+                        Form Factor
+                        <p  style={{textAlign:'center',color:'rgb(229,229,229)'}}>
                           {e.mbform_factor}
                         </p>
-                        <p>
+                        <hr style={{width:'180px',height:'2px',border:'0',borderTop:'1px solid black',lineHeight:'1px',marginTop:'-5px'}}/>
+                        Socket
+                        <p  style={{textAlign:'center',color:'rgb(229,229,229)'}}>
                           {e.mbcpu_socket}
                         </p>
-                        <p>
+                        <hr style={{width:'180px',height:'2px',border:'0',borderTop:'1px solid black',lineHeight:'1px',marginTop:'-5px'}}/>
+                        Memory slots
+                        <p  style={{textAlign:'center',color:'rgb(229,229,229)'}}>
                           {e.mbmem_slot}
                         </p>
-                        <p>
+                        <hr style={{width:'180px',height:'2px',border:'0',borderTop:'1px solid black',lineHeight:'1px',marginTop:'-5px'}}/>
+                        Memory Type
+                        <p  style={{textAlign:'center',color:'rgb(229,229,229)'}}>
                           {e.mbmem_type}
                         </p>
-                        <p>
+                        <hr style={{width:'180px',height:'2px',border:'0',borderTop:'1px solid black',lineHeight:'1px',marginTop:'-5px'}}/>
+                        Maximum Memory
+                        <p  style={{textAlign:'center',color:'rgb(229,229,229)'}}>
                           {e.mbmax_mem}
                         </p>
-                        <p>
+                        <hr style={{width:'180px',height:'2px',border:'0',borderTop:'1px solid black',lineHeight:'1px',marginTop:'-5px'}}/>
+                        Sata Connections
+                        <p  style={{textAlign:'center',color:'rgb(229,229,229)'}}>
                           {e.mbsata}
-                        </p>                        
-                      <span onClick={()=>this.saveItem(e.id)}><i className="fa fa-plus" aria-hidden="true"></i></span>
-                      </div>
+                        </p>
+                        <hr style={{width:'180px',height:'2px',border:'0',borderTop:'1px solid black',lineHeight:'1px',marginTop:'-5px'}}/>                        
+                      <span onClick={()=>this.saveItem(e.mb_id)}><i className="fa fa-plus" aria-hidden="true"></i></span>
                       {
                         this.state.itemToggle === true
                         ? <p>item Added</p>
                         : null
                       }
+                      </div>
                     </AccordionItemBody>
                     </AccordionItem>
                   </Accordion>

@@ -32,74 +32,98 @@ class Cpu extends Component {
     this.setState({itemToggle:true})    
   }
   render() {
-    console.log(this.state.cpu)
+    // console.log(this.state.cpu)
     return (
-      <div>
+      <div style={{width:'100%',overflow:'hidden'}}>
         {
           this.state.cpu.map(e=>{
             return(
               <div className='Cpu' key={e.id}>            
-                  <Accordion>
+                  <Accordion style={{width:'100%',overflow:'hidden'}}>
                     <AccordionItem>
-                    <AccordionItemTitle>
+                    <AccordionItemTitle style={{background:'rgb(64,64,64)', color:'rgb(229,229,229)',fontWeight:'bold'}}>
                       <div style={{
                         display:'flex',
                         justifyContent:'space-evenly',
                         alignItems:'center',
-                        flexDirection:'column',    
+                        flexDirection:'column',   
+                        textAlign:'center' 
                       }}>
                         <p>{e.cpumodel}</p>
 
                       </div>
                     </AccordionItemTitle>
-                    <AccordionItemBody>
+                    <AccordionItemBody style={{background:'rgb(127,127,127)'}}>
                       <div style={{
                         display:'flex',
                         justifyContent:'space-evenly',
                         alignItems:'center',
                         flexDirection:'column',                      
                       }}>
-                        <p>
+                        Manufacturer
+                        <p style={{textAlign:'center',color:'rgb(229,229,229)'}}>
                           {e.cpumanufacturer}
-                        </p>
-                        <p>
+                        </p> 
+                        
+                        <hr style={{width:'180px',height:'2px',border:'0',borderTop:'1px solid black',lineHeight:'1px',}}/>
+                        Core count
+                        <p style={{textAlign:'center',color:'rgb(229,229,229)'}}>
                           {e.cpucores}
-                        </p>
-                        <p>
+                        </p> 
+                        <hr style={{width:'180px',height:'2px',border:'0',borderTop:'1px solid black',lineHeight:'1px',}}/>
+                        Cpu Socket
+                        <p style={{textAlign:'center',color:'rgb(229,229,229)'}}>
                           {e.cpusocket}
-                        </p>
-                        <p>
+                        </p> 
+                        <hr style={{width:'180px',height:'2px',border:'0',borderTop:'1px solid black',lineHeight:'1px',}}/>
+                        Part number
+                        <p style={{textAlign:'center',color:'rgb(229,229,229)'}}>
                           {e.cpupartnum}
-                        </p>
-                        <p>
+                        </p> 
+                        <hr style={{width:'180px',height:'2px',border:'0',borderTop:'1px solid black',lineHeight:'1px',}}/>
+                        Core frequency
+                        <p style={{textAlign:'center',color:'rgb(229,229,229)'}}>
                           {e.cpufrenquency}
-                        </p>
-                        <p>
+                        </p> 
+                        <hr style={{width:'180px',height:'2px',border:'0',borderTop:'1px solid black',lineHeight:'1px',}}/>
+                        Turbo frequency
+                        <p style={{textAlign:'center',color:'rgb(229,229,229)'}}>
                           {e.cputurbo}
-                        </p>
-                        <p>
+                        </p> 
+                        <hr style={{width:'180px',height:'2px',border:'0',borderTop:'1px solid black',lineHeight:'1px',}}/>
+                         Thermal design Power
+                        <p style={{textAlign:'center',color:'rgb(229,229,229)'}}>
                           {e.cputdp}
-                        </p>
-                        <p>
+                        </p> 
+                         <hr style={{width:'180px',height:'2px',border:'0',borderTop:'1px solid black',lineHeight:'1px',}}/>
+                         Multithreaded
+                        <p style={{textAlign:'center',color:'rgb(229,229,229)'}}>
                           {e.cpumultithread}
-                        </p>
-                        <p>
+                        </p> 
+                         <hr style={{width:'180px',height:'2px',border:'0',borderTop:'1px solid black',lineHeight:'1px',}}/>
+                         Maximum Memory
+                        <p style={{textAlign:'center',color:'rgb(229,229,229)'}}>
                           {e.cpumaxmem}
-                        </p>
-                        <p>
+                        </p> 
+                         <hr style={{width:'180px',height:'2px',border:'0',borderTop:'1px solid black',lineHeight:'1px',}}/>
+                         Integrated Graphics
+                        <p style={{textAlign:'center',color:'rgb(229,229,229)'}}>
                           {e.cpuintgraphics}
-                        </p>
-                        <p>
-                          {e.cpuincludedcpu_cooler}
-                        </p>
-                      <span onClick={()=>this.saveItem(e.id)}> 
-                      <i className="fa fa-plus" aria-hidden="true"></i>
+                        </p> 
+                         <hr style={{width:'180px',height:'2px',border:'0',borderTop:'1px solid black',lineHeight:'1px',}}/>
+                         Includes cooler
+                        <p style={{textAlign:'center',color:'rgb(229,229,229)'}}>
+                          {e.cpuincluded_cooler}
+                        </p> 
+                         <hr style={{width:'180px',height:'2px',border:'0',borderTop:'1px solid black',lineHeight:'1px',}}/>
+                      <span onClick={()=>this.saveItem(e.cpu_id)}> 
+                      <i style={{width:'10px',height:'10px', color:'rgb(225,225,225)'}} className="fa fa-plus" aria-hidden="true"></i>
+                      </span>
                       {
                         this.state.itemToggle === true
                         ? <p>Item added</p>
                         :null
                       } 
-                      </span>
                       </div>
                     </AccordionItemBody>
                     </AccordionItem>

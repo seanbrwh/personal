@@ -36,53 +36,69 @@ class VideoCard extends Component {
           this.state.videocard.map(e=>{
             return(
               <div className='videocard' key={e.id}>            
-                  <Accordion>
+                  <Accordion  style={{width:'100%',overflow:'hidden'}}>
                     <AccordionItem>
-                    <AccordionItemTitle>
+                    <AccordionItemTitle style={{background:'rgb(64,64,64)', color:'rgb(229,229,229)',fontWeight:'bold'}}>
                       <div style={{
                         display:'flex',
                         justifyContent:'space-evenly',
                         alignItems:'center',
                         flexDirection:'column',    
+                        textAlign:'center'
                       }}>
                         <p>{e.vidmodel}</p>
 
                       </div>
                     </AccordionItemTitle>
-                    <AccordionItemBody>
+                    <AccordionItemBody  style={{background:'rgb(127,127,127)'}}>
                       <div style={{
                         display:'flex',
                         justifyContent:'space-evenly',
                         alignItems:'center',
                         flexDirection:'column',                      
                       }}>
-                        <p>
+                      Manufacturer
+                        <p style={{textAlign:'center',color:'rgb(229,229,229)'}}>
                           {e.vidmanufacturer}
                         </p>
-                        <p>
+                        <hr style={{width:'180px',height:'2px',border:'0',borderTop:'1px solid black',lineHeight:'1px',marginTop:'-5px'}}/>
+                        Part Number
+                        <p style={{textAlign:'center',color:'rgb(229,229,229)'}}>
                           {e.vidpartnum}
                         </p>
-                        <p>
+                        <hr style={{width:'180px',height:'2px',border:'0',borderTop:'1px solid black',lineHeight:'1px',marginTop:'-5px'}}/>
+                        Thermal Design Power
+                        <p style={{textAlign:'center',color:'rgb(229,229,229)'}}>
                           {e.vidtdp}
                         </p>
-                        <p>
+                        <hr style={{width:'180px',height:'2px',border:'0',borderTop:'1px solid black',lineHeight:'1px',marginTop:'-5px'}}/>
+                        Memory
+                        <p style={{textAlign:'center',color:'rgb(229,229,229)'}}>
                           {e.vidmem_size}
                         </p>
-                        <p>
+                        <hr style={{width:'180px',height:'2px',border:'0',borderTop:'1px solid black',lineHeight:'1px',marginTop:'-5px'}}/>
+                        Core Clock
+                        <p style={{textAlign:'center',color:'rgb(229,229,229)'}}>
                           {e.vidcore_clock}
                         </p>
-                        <p>
+                        <hr style={{width:'180px',height:'2px',border:'0',borderTop:'1px solid black',lineHeight:'1px',marginTop:'-5px'}}/>
+                        Video Card Length
+                        <p style={{textAlign:'center',color:'rgb(229,229,229)'}}>
                           {e.vidfan_length}
                         </p>
-                        <p>
+                        <hr style={{width:'180px',height:'2px',border:'0',borderTop:'1px solid black',lineHeight:'1px',marginTop:'-5px'}}/>
+                        Video Outputs
+                        <p style={{textAlign:'center',color:'rgb(229,229,229)'}}>
                           {e.vidoutputs}
                         </p>
-                      <span onClick={()=>this.saveItem(e.id)}><i className="fa fa-plus" aria-hidden="true"></i>
+                        <hr style={{width:'180px',height:'2px',border:'0',borderTop:'1px solid black',lineHeight:'1px',marginTop:'-5px'}}/>
+                      <span onClick={()=>this.saveItem(e.vid_id)}><i className="fa fa-plus" aria-hidden="true"></i>
+                      </span>
                       {
                         this.state.itemToggle === true
                         ? <p>item Added</p>
                         : null
-                      }</span>
+                      }
                       </div>
                     </AccordionItemBody>
                     </AccordionItem>

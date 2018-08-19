@@ -100,9 +100,9 @@ app.post('/api/getlist', async (req,res)=>{
 
 app.post('/api/addList',(req,res)=>{
   let db = app.get('db')
-  let {compcase,cpu,cpucooler,memory,motherboard,powersupply,storage,videocard} = req.body
-  console.log(req.body);
-  db.addList([compcase,cpu,cpucooler,memory,motherboard,powersupply,storage,videocard,req.session.user.user_id]).then(response=>{
+  let {compcase,cpu,cpucooler,memory,motherboard,powersupply,storage,videocard,user} = req.body
+  // console.log(req.body);
+  db.addList([compcase,cpu,cpucooler,memory,motherboard,powersupply,storage,videocard,user]).then(response=>{
     res.send(response)
   })
 })
@@ -114,6 +114,68 @@ app.delete('/api/deletelist/:list_id',(req,res)=>{
     res.send(response)
   })
 })
+
+
+app.put('/api/update_cpu',(req,res)=>{
+  let db = app.get('db')
+  let {newCpu,list_id,user} = req.body
+  db.u_cpu([newCpu,user,list_id]).then(response=>{
+    res.send(response)
+    // console.log(response);
+  })
+})
+
+app.put('/api/update_case',(req,res)=>{
+  let db = app.get('db')
+  let {newCompCase,list_id,user} = req.body
+  db.u_case([newCompCase,user,list_id]).then(response=>{
+    res.send(response)
+    console.log(response);
+  })
+})
+app.put('/api/update_cooler',(req,res)=>{
+  let db = app.get('db')
+  let {newCooler,list_id,user} = req.body
+  db.u_cooler([newCooler,user,list_id]).then(response=>{
+    res.send(response)
+  })
+})
+app.put('/api/update_mb',(req,res)=>{
+  let db = app.get('db')
+  let {newMb,list_id,user} = req.body
+  db.u_mb([newMb,user,list_id]).then(response=>{
+    res.send(response)
+  })
+})
+app.put('/api/update_mem',(req,res)=>{
+  let db = app.get('db')
+  let {newMem,list_id,user} = req.body
+  db.u_mem([newMem,user,list_id]).then(response=>{
+    res.send(response)
+  })
+})
+app.put('/api/update_psu',(req,res)=>{
+  let db = app.get('db')
+  let {newPsu,list_id,user} = req.body
+  db.u_psu([newPsu,user,list_id]).then(response=>{
+    res.send(response)
+  })
+})
+app.put('/api/update_storage',(req,res)=>{
+  let db = app.get('db')
+  let {newStorage,list_id,user} = req.body
+  db.u_storages([newStorage,user,list_id]).then(response=>{
+    res.send(response)
+  })
+})
+app.put('/api/update_vid',(req,res)=>{
+  let db = app.get('db')
+  let {newVid,list_id,user} = req.body
+  db.u_vid([newVid,user,list_id]).then(response=>{
+    res.send(response)
+  })
+})
+
 app.listen(SERVER_PORT,()=>{
   console.log(`Listening on Port :${SERVER_PORT}`)
 })

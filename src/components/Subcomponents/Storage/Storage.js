@@ -35,48 +35,60 @@ class Storage extends Component {
           this.state.storage.map(e=>{
             return(
               <div className='storage' key={e.id}>            
-                  <Accordion>
+                  <Accordion style={{width:'100%',overflow:'hidden'}}>
                     <AccordionItem>
-                    <AccordionItemTitle>
+                    <AccordionItemTitle style={{background:'rgb(64,64,64)', color:'rgb(229,229,229)',fontWeight:'bold'}}>
                       <div style={{
                         display:'flex',
                         justifyContent:'space-evenly',
                         alignItems:'center',
-                        flexDirection:'column',    
+                        flexDirection:'column',
+                        textAlign:'center'    
                       }}>
                         <p>{e.stmodel}</p>
 
                       </div>
                     </AccordionItemTitle>
-                    <AccordionItemBody>
+                    <AccordionItemBody style={{background:'rgb(127,127,127)'}}>
                       <div style={{
                         display:'flex',
                         justifyContent:'space-evenly',
                         alignItems:'center',
                         flexDirection:'column',                      
-                      }}>                       
-                        <p>
+                      }}>              
+                      Manufacturer         
+                        <p  style={{textAlign:'center',color:'rgb(229,229,229)'}}>
                           {e.stmanufacturer}
                         </p>
-                        <p>
+                         <hr style={{width:'180px',height:'2px',border:'0',borderTop:'1px solid black',lineHeight:'1px',marginTop:'-5px'}}/>
+                        Part Number
+                        <p  style={{textAlign:'center',color:'rgb(229,229,229)'}}>
                           {e.stpartnum}
                         </p>
-                        <p>
+                         <hr style={{width:'180px',height:'2px',border:'0',borderTop:'1px solid black',lineHeight:'1px',marginTop:'-5px'}}/>
+                          Capicity
+                        <p  style={{textAlign:'center',color:'rgb(229,229,229)'}}>
                           {e.stcapicity}
                         </p>
-                        <p>
+                         <hr style={{width:'180px',height:'2px',border:'0',borderTop:'1px solid black',lineHeight:'1px',marginTop:'-5px'}}/>
+                        Interface
+                        <p  style={{textAlign:'center',color:'rgb(229,229,229)'}}>
                           {e.stinterface}
                         </p>
-                        <p>
+                         <hr style={{width:'180px',height:'2px',border:'0',borderTop:'1px solid black',lineHeight:'1px',marginTop:'-5px'}}/>
+                        Form Factor
+                        <p  style={{textAlign:'center',color:'rgb(229,229,229)'}}>
                           {e.stform_factor}
                         </p>
+                         <hr style={{width:'180px',height:'2px',border:'0',borderTop:'1px solid black',lineHeight:'1px',marginTop:'-5px'}}/>
                         
-                      <span onClick={()=>this.saveItem(e.id)}><i className="fa fa-plus" aria-hidden="true"></i>
+                      <span onClick={()=>this.saveItem(e.storage_id)}><i className="fa fa-plus" aria-hidden="true"></i>
+                      </span>
                       {
                         this.state.itemToggle === true
                         ? <p>item Added</p>
                         : null
-                      }</span>
+                      }
                       </div>
                     </AccordionItemBody>
                     </AccordionItem>

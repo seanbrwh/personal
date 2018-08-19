@@ -1,2 +1,2 @@
 select * from cpu
-where id = $1
+where cpu_id = $1

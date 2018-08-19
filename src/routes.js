@@ -1,5 +1,5 @@
 import React from 'react'
-import {Switch,Route} from 'react-router-dom'
+import {Route} from 'react-router-dom'
 import Landing from './components/Landing/Landing'
 import BigList from './components/BigList/BigList'
 import List from './components/List/List'
@@ -12,9 +12,15 @@ import Motherboard from './components/Subcomponents/Motherboard/Motherboard'
 import PowerSupply from './components/Subcomponents/PowerSupply/PowerSupply'
 import Storage from './components/Subcomponents/Storage/Storage'
 import VideoCard from './components/Subcomponents/VideoCard/VideoCard'
+import { AnimatedSwitch } from 'react-router-transition'
 
 export default(
-  <Switch>
+  <AnimatedSwitch
+      atEnter={{ opacity: 0.1 }}
+      atLeave={{ opacity: 0.1 }}
+      atActive={{ opacity: 1 }}
+      
+    >
     <Route exact path='/' component={Landing}/>
     <Route path='/biglist' component={BigList}/>
     <Route path='/list' component={List}/>
@@ -27,5 +33,5 @@ export default(
     <Route path='/powersupply' component={PowerSupply}/>
     <Route path='/storage' component={Storage}/>
     <Route path='/videocard' component={VideoCard}/>
-  </Switch>
+  </AnimatedSwitch>
 )

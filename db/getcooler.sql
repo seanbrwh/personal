@@ -1,2 +1,2 @@
 select * from cpu_cooler
-where id = $1
+where cooler_id = $1

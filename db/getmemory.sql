@@ -1,2 +1,2 @@
 select * from memory 
-where id = $1
+where mem_id = $1

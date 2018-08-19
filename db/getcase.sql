@@ -1,2 +1,2 @@
 select * from compcase 
-where id = $1
+where case_id = $1

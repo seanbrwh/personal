@@ -1,2 +1,2 @@
 select * from psu
-where id = $1
+where psu_id = $1

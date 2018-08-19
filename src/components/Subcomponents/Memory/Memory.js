@@ -35,49 +35,59 @@ class Memory extends Component {
           this.state.memory.map(e=>{
             return(
               <div className='memory' key={e.id}>            
-                  <Accordion>
+                  <Accordion style={{width:'100%',overflow:'hidden'}}>
                     <AccordionItem>
-                    <AccordionItemTitle>
+                    <AccordionItemTitle style={{background:'rgb(64,64,64)', color:'rgb(229,229,229)',fontWeight:'bold'}}>
                       <div style={{
                         display:'flex',
                         justifyContent:'space-evenly',
                         alignItems:'center',
-                        flexDirection:'column',    
+                        flexDirection:'column',
+                        textAlign:'center'    
                       }}>
                         <p>{e.memmodel}</p>
 
                       </div>
                     </AccordionItemTitle>
-                    <AccordionItemBody>
+                    <AccordionItemBody style={{background:'rgb(127,127,127)'}}>
                       <div style={{
                         display:'flex',
                         justifyContent:'space-evenly',
                         alignItems:'center',
                         flexDirection:'column',                      
                       }}>
-                      
-                        <p>
+                        Manufacturer
+                        <p style={{textAlign:'center',color:'rgb(229,229,229)'}}>
                           {e.memmanufacturer}
-                        </p>                        
-                        <p>
+                        </p>
+                        <hr style={{width:'180px',height:'2px',border:'0',borderTop:'1px solid black',lineHeight:'1px',marginTop:'-5px'}}/>    
+                        Part Number                    
+                        <p style={{textAlign:'center',color:'rgb(229,229,229)'}}>
                           {e.mempartnum}
                         </p>
-                        <p>
+                        <hr style={{width:'180px',height:'2px',border:'0',borderTop:'1px solid black',lineHeight:'1px',marginTop:'-5px'}}/>
+                        Memory speed
+                        <p style={{textAlign:'center',color:'rgb(229,229,229)'}}>
                           {e.memspeed}
                         </p>
-                        <p>
+                        <hr style={{width:'180px',height:'2px',border:'0',borderTop:'1px solid black',lineHeight:'1px',marginTop:'-5px'}}/>
+                        Memory size
+                        <p style={{textAlign:'center',color:'rgb(229,229,229)'}}>
                           {e.memsize}
                         </p>
-                        <p>
+                        <hr style={{width:'180px',height:'2px',border:'0',borderTop:'1px solid black',lineHeight:'1px',marginTop:'-5px'}}/>
+                        Cas Latency
+                        <p style={{textAlign:'center',color:'rgb(229,229,229)'}}>
                           {e.memcas_latency}
                         </p>
-                      <span onClick={()=>this.saveItem(e.id)}><i className="fa fa-plus" aria-hidden="true"></i></span>
-                      </div>
+                        <hr style={{width:'180px',height:'2px',border:'0',borderTop:'1px solid black',lineHeight:'1px',marginTop:'-5px'}}/>
+                      <span onClick={()=>this.saveItem(e.mem_id)}><i className="fa fa-plus" aria-hidden="true"></i></span>
                       {
                         this.state.itemToggle === true
                         ? <p>item Added</p>
                         :null
                       }
+                      </div>
                     </AccordionItemBody>
                     </AccordionItem>
                   </Accordion>

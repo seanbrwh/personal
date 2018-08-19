@@ -1,2 +1,2 @@
 select * from storage 
-where id = $1
+where storage_id = $1

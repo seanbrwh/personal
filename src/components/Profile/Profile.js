@@ -22,12 +22,10 @@ class Profile extends Component {
   render() {
     
     return (
-      <div>
-      <h1>List</h1>
-      <List/>
-      <span>Save List</span>
-      <span>Update List</span>
-      <span onClick={()=>this.logOut()}>Logout</span>
+      <div style={{width:'100%', height:'100vh', display:'flex', justifyContent:'space-around', alignItems:'center', flexDirection:'column',background:'rgb(127,127,127)',paddingTop:'15px'}}>
+      <span onClick={()=>this.logOut()}><i style={{color:'rgb(225,225,225)'}} class="fa fa-sign-out" aria-hidden="true"></i>
+      </span>
+      <List/>    
       </div>
     )
   }

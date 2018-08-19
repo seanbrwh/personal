@@ -1,2 +1,2 @@
 select * from vid_card 
-where id = $1
+where vid_id = $1

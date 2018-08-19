@@ -1,2 +1,2 @@
 select * from motherboard
-where id = $1
+where mb_id = $1
