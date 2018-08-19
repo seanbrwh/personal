@@ -41,11 +41,11 @@ app.get('/auth/callback', async (req, res) => {
   let userExists = await db.find_user([sub]);
   if (userExists[0]) {
     req.session.user = userExists[0];
-    res.redirect('http://localhost:3000/#/biglist');
+    res.redirect('/#/biglist');
   } else {
     db.create_user([sub, name, picture]).then(createdUser => {
       req.session.user = createdUser[0];
-      res.redirect('http://localhost:3000/#/biglist');
+      res.redirect('/#/biglist');
     });
   }
 });
